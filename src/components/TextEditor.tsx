@@ -36,7 +36,7 @@ export const TextEditor = () => {
   return (
     <div className="h-full mx-auto pt-xl pb-[30%] w-full px-base md:w-4/6 md:px-0 max-w-[70ch]">
       <input
-        className="font-display placeholder:text-gray-lighter text-gray-dark font-black text-3xl mb-base outline-none"
+        className="bg-light font-display placeholder:text-gray-lighter text-gray-dark font-black text-3xl mb-base outline-none"
         placeholder="Enter a title ..."
         type="text"
         value={title}
