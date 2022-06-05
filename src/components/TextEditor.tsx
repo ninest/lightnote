@@ -4,8 +4,15 @@ import StarterKit from "@tiptap/starter-kit";
 import { useAtom } from "jotai";
 import { atomWithHash } from "jotai/utils";
 import { useEffect } from "react";
+import {
+  compressToEncodedURIComponent as compress,
+  decompressFromEncodedURIComponent as decompress,
+} from "lz-string";
 
-const contentAtom = atomWithHash("content", "");
+const contentAtom = atomWithHash("content", "", {
+  serialize: (s) => compress(s),
+  deserialize: (s) => decompress(s) || "",
+});
 
 export const TextEditor = () => {
   const [content, setContent] = useAtom(contentAtom);
