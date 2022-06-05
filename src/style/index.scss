@@ -2,8 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+@import "./font.scss";
 @import "./colors.scss";
 @import "./prose.scss";
+
+html {
+  // Set default font size
+  font-size: 15px;
+
+  font-variant-ligatures: additional-ligatures;
+}
 
 @layer utilities {
   .form {
