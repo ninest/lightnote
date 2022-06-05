@@ -1,9 +1,11 @@
 import { useState } from "react";
+import { TextEditor } from "./components/TextEditor";
 
 function App() {
   return (
     <>
-      <h1>Hello</h1>
+      <h1>Lighter notes</h1>
+      <TextEditor />
     </>
   );
 }
