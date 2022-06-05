@@ -27,16 +27,16 @@
     }
 
     h1 {
-      @apply text-4xl font-black;
-    }
-    h2 {
       @apply text-3xl font-bold;
     }
+    h2 {
+      @apply text-2xl font-bold;
+    }
     h3 {
-      @apply text-2xl font-semibold;
+      @apply text-xl font-semibold;
     }
     h4 {
-      @apply text-xl font-medium;
+      @apply text-lg font-medium;
     }
 
     /* Style all link anchors */
@@ -115,7 +115,7 @@
   // Full height text editor
   @apply h-full ;
   @apply outline-none;
-  @apply py-2xl;
+  @apply pb-2xl;
 }
 
 // Placeholder
