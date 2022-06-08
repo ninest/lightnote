@@ -1,29 +1,31 @@
+import Link from "@tiptap/extension-link";
 import Placeholder from "@tiptap/extension-placeholder";
 import { EditorContent, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
+import clsx from "clsx";
 import { useAtom } from "jotai";
 import { atomWithHash } from "jotai/utils";
-import { useEffect } from "react";
 import {
   compressToEncodedURIComponent as compress,
   decompressFromEncodedURIComponent as decompress,
 } from "lz-string";
-import { Icon } from "./Icon";
+import { useEffect } from "react";
+import type { IconType } from "react-icons";
 import {
   FaBold,
-  FaItalic,
-  FaStrikethrough,
   FaCode,
+  FaFileCode,
   FaHeading,
+  FaItalic,
   FaListOl,
   FaListUl,
-  FaFileCode,
   FaQuoteRight,
-  FaUndo,
   FaRedo,
+  FaStrikethrough,
+  FaUndo,
+  FaLink,
 } from "react-icons/fa";
-import type { IconType } from "react-icons";
-import clsx from "clsx";
+import { Icon } from "./Icon";
 
 const titleAtom = atomWithHash("title", "");
 const contentAtom = atomWithHash("content", "", {
@@ -41,10 +43,15 @@ export const TextEditor = () => {
       Placeholder.configure({
         placeholder: "Start writing ...",
       }),
+      Link.configure({
+        HTMLAttributes: {
+          class: "underline",
+        },
+      }),
     ],
     content,
   });
-  
+
   useEffect(() => {
     setContent(editor?.getHTML() || "");
   }, [editor?.state]);
@@ -82,6 +89,17 @@ export const TextEditor = () => {
                 icon={FaCode}
                 action={() => editor.chain().focus().toggleCode().run()}
                 active={editor.isActive("code")}
+              />
+              <FormatButton
+                icon={FaLink}
+                action={() =>
+                  editor.isActive("link")
+                    ? editor.commands.unsetLink()
+                    : editor.commands.toggleLink({
+                        href: window.prompt("URL", "") ?? "",
+                      })
+                }
+                active={editor.isActive("link")}
               />
               <span className="w-0 border-gray-200 border-r"></span>
               <FormatButton
