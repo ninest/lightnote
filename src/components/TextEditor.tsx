@@ -67,7 +67,7 @@ export const TextEditor = () => {
           onChange={(e) => setTitle(e.target.value)}
         />
         <EditorContent className="h-full" editor={editor}></EditorContent>
-        <div className="lg:hidden border-t fixed bottom-0 left-0 right-0">
+        <div className="bg-light opacity-90 lg:hidden border-t fixed bottom-0 left-0 right-0">
           <div className="p-base overflow-x-scroll">
             <div className="inline-flex space-x-lg pr-xl">
               <FormatButton
@@ -94,8 +94,10 @@ export const TextEditor = () => {
                 icon={FaLink}
                 action={() =>
                   editor.isActive("link")
-                    ? editor.commands.unsetLink()
-                    : editor.commands.toggleLink({
+                    ? // @ts-ignore
+                      editor.commands.unsetLink()
+                    : // @ts-ignore
+                      editor.commands.toggleLink({
                         href: window.prompt("URL", "") ?? "",
                       })
                 }
